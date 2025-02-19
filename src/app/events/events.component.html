@@ -1,7 +1,50 @@
-<h1>Eventos</h1>
+<h2>Eventos</h2>
+<hr>
 
-<div *ngFor="let event of events">
-  <li><b>Tema: </b>{{event.theme}}</li>
-  <li><b>Local: </b>{{event.location}}</li>
-  <hr>
-</div>
+<form class="form">
+  <div class="input-group mb-2">
+    <label class="me-2" for="topic">Topic: </label>
+    <input type="text" id="topic" name="theme" class="form-control mr-2" 
+    placeholder="Topic" [(ngModel)]="topic">
+    <label class="me-2 ms-2" for="location">Location: </label>
+    <input type="text" id="location" name="location" class="form-control mr-2" 
+    placeholder="Location" [(ngModel)]="location">
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Image</th>
+      <th>Topic</th>
+      <th>Local</th>
+      <th>Date</th>
+      <th>Participants</th>
+      <th>Batch</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of filteredEvents">
+      <td>{{event.eventId}}</td>
+      <td>{{event.imageUrl}}</td>
+      <td>{{event.topic}}</td>
+      <td>{{event.location}}</td>
+      <td>{{event.eventDate}}</td>
+      <td>{{event.qntPeople}}</td>
+      <td>{{event.batch}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm me-2">Edit</button>
+        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!events || !events.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>No Events found</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
