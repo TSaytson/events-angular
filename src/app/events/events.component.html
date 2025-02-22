@@ -27,16 +27,20 @@
   </thead>
   <tbody>
     <tr *ngFor="let event of filteredEvents">
-      <td>{{event.eventId}}</td>
+      <td>{{event.Id}}</td>
       <td>{{event.imageUrl}}</td>
       <td>{{event.topic}}</td>
       <td>{{event.location}}</td>
-      <td>{{event.eventDate}}</td>
+      <td>{{event.eventDate | dateFormat}}</td>
       <td>{{event.qntPeople}}</td>
-      <td>{{event.batch}}</td>
+      <td>{{event.batches[0].name}}</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm me-2">Edit</button>
-        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+        <button type="button" class="btn btn-primary btn-sm me-2">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">
+          <i class="fa fa-trash"></i>
+        </button>
       </td>
     </tr>
   </tbody>

@@ -10,13 +10,16 @@ import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
 import { SpeakersComponent } from './speakers/speakers.component';
 import { NavComponent } from './nav/nav.component';
+import { DateFormatPipe } from './helpers/date-format.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
     SpeakersComponent,
-    NavComponent
+    NavComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { NavComponent } from './nav/nav.component';
     CollapseModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

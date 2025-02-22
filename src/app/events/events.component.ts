@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Event } from './event.model';
+import { Event } from '../models/Event';
+import { EventService } from '../services/event.service';
 
 @Component({
   selector: 'app-events',
@@ -8,7 +8,7 @@ import { Event } from './event.model';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+  constructor(private eventService: EventService) { }
 
   ngOnInit(): void {
     this.getEvents()
@@ -60,10 +60,10 @@ export class EventsComponent implements OnInit {
   }
 
   public getEvents(): void {
-    this.http.get<Event[]>('http://localhost:5000/api/events').
-      subscribe(
+    this.eventService.getEvents()
+      .subscribe(
         Response => {
-          this.events = Response
+          this.events = Response;
           this.filteredEvents = this.events;
         },
         Error => console.log(Error)
